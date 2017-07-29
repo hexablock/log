@@ -50,6 +50,12 @@ const (
 
 type LogLevel string
 
+const (
+	LogLevelError LogLevel = "ERROR"
+	LogLevelInfo  LogLevel = "INFO"
+	LogLevelDebug LogLevel = "DEBUG"
+)
+
 // A Logger represents an active logging object that generates lines of
 // output to an io.Writer. Each logging operation makes a single call to
 // the Writer's Write method. A Logger can be used simultaneously from
@@ -76,9 +82,9 @@ func New(out io.Writer, prefix string, flag int) *Logger {
 		out:    out,
 		prefix: prefix,
 		flag:   flag,
-		levels: []LogLevel{"DEBUG", "INFO", "ERROR"},
+		levels: []LogLevel{LogLevelDebug, LogLevelInfo, LogLevelError},
 	}
-	l.SetLevel("ERROR")
+	l.SetLevel(LogLevelError)
 
 	return l
 }
