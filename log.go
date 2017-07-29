@@ -48,11 +48,15 @@ const (
 	LstdFlags     = Ldate | Ltime // initial values for the standard logger
 )
 
+// LogLevel is the log level
 type LogLevel string
 
 const (
+	// LogLevelError is the error log level
 	LogLevelError LogLevel = "ERROR"
-	LogLevelInfo  LogLevel = "INFO"
+	// LogLevelInfo is the info log level
+	LogLevelInfo LogLevel = "INFO"
+	// LogLevelDebug is the debug log level
 	LogLevelDebug LogLevel = "DEBUG"
 )
 
