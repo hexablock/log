@@ -76,11 +76,9 @@ type Logger struct {
 	badLevels map[LogLevel]struct{}
 }
 
-// New creates a new Logger. The out variable sets the
-// destination to which log data will be written.
-// The prefix appears at the beginning of each generated log line.
-// The flag argument defines the logging properties.  By default the log level
-// is set to ERROR.
+// New creates a new Logger. The out variable sets the destination to which log data will
+// be written. The prefix appears at the beginning of each generated log line.  The flag
+// argument defines the logging properties.  By default the log level is set to ERROR.
 func New(out io.Writer, prefix string, flag int) *Logger {
 	l := &Logger{
 		out:    out,
