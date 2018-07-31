@@ -32,25 +32,26 @@ func (l *Logger) SetCallDepth(d int) {
 
 // EnableDebug enables debug messages to print.
 func (l *Logger) EnableDebug(v bool) {
-	flg := log.LstdFlags | log.Lmicroseconds | log.Lshortfile
+	if v {
+		flg := log.LstdFlags | log.Lmicroseconds | log.Lshortfile
 
-	l.stderr.SetFlags(flg)
-	l.stdout.SetFlags(flg)
-
+		l.stderr.SetFlags(flg)
+		l.stdout.SetFlags(flg)
+	}
 	l.debug = v
 }
 
 // Debug implements the Logger interface.
 func (l *Logger) Debug(v ...interface{}) {
 	if l.debug {
-		l.stdout.Output(l.calldepth, header("DBG", fmt.Sprint(v...)))
+		l.stderr.Output(l.calldepth, header("DBG", fmt.Sprint(v...)))
 	}
 }
 
 // Debugf implements the Logger interface.
 func (l *Logger) Debugf(format string, v ...interface{}) {
 	if l.debug {
-		l.stdout.Output(l.calldepth, header("DBG", fmt.Sprintf(format, v...)))
+		l.stderr.Output(l.calldepth, header("DBG", fmt.Sprintf(format, v...)))
 	}
 }
 
